@@ -1,35 +1,144 @@
 .experience-section {
-    display: grid;
-    position: relative;
-    height: auto;
-    grid-template-rows: auto;
-    gap: 10px;
-    padding: 2rem;
-    padding-top: 10rem;
-    padding-bottom: 10rem;
-    justify-content: center;
+  display: grid;
+  position: relative;
+  height: auto;
+  grid-template-rows: auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 1rem; /* Adicionar um pouco de padding geral pode ajudar */
 }
 
 .experience-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center; /* Alinha os itens verticalmente */
+  max-width: 100vh; /* Definir uma largura máxima pode ser útil */
+  margin: 0 auto; /* Centralizar o conteúdo */
 }
 
 .experience-text-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
 }
 
-.cards{
-    display:grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    padding: 2rem;
-    padding-top: 10rem;
-    padding-bottom: 10rem;
-    justify-content: center;
+.experience-text-content h2 {
+  font-size: 3rem; /* Ajuste leve para caber melhor */
+  padding-left: 2rem;
+  margin-bottom: 1.5rem; /* Espaçamento */
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 2rem;
+  padding-bottom: 2rem; /* Reduzir um pouco se não for necessário */
+  justify-content: center;
+}
+
+.card {
+  background: rgb(66, 66, 66);
+  padding: 1.5rem; /* Aumentar um pouco o padding */
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.5rem; /* Ajuste */
+  color: #ffffff;
+}
+
+.card p {
+  font-size: 1em; /* Ajuste */
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.card:nth-child(3) {
+  grid-column: 1 / 3;
+}
+
+.image-content {
+  display: flex;
+  justify-content: center; /* Centraliza ou use 'end' se preferir */
+  align-items: center; /* Centraliza verticalmente */
+}
+
+.image-content img {
+  max-width: 100%;
+  height: auto; /* Garante a proporção */
+  display: block; /* Remove espaços extras abaixo da imagem */
+  border-radius: 10px; /* Opcional: Adiciona bordas arredondadas */
+}
+
+/* Media Query para Responsividade */
+@media (max-width: 992px) { /* Um breakpoint intermediário se necessário */
+  .experience-text-content h2 {
+      font-size: 2.5rem;
+  }
+  .cards {
+      padding: 1rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .experience-content {
+      /* Muda para uma coluna, empilhando os itens */
+      grid-template-columns: 1fr;
+      gap: 30px; /* Aumenta o espaço quando empilhado */
+  }
+
+  .experience-text-content h2 {
+      font-size: 2.2rem;
+      padding-left: 1rem;
+      text-align: center; /* Centraliza o título em telas menores */
+  }
+
+  /* Opcional: Mudar a ordem para imagem vir primeiro */
+  /* .image-content {
+      order: -1; 
+  } */
+
+  .image-content {
+      /* Garante que o container da imagem se centralize */
+      justify-content: center;
+      padding: 0 1rem; /* Adiciona padding lateral */
+  }
+
+  .image-content img {
+      /* Garante que a imagem use a largura, com um limite */
+      width: 100%; 
+      max-width: 450px; /* Limita o tamanho máximo da imagem */
+      height: auto;
+      margin: 0 auto; /* Centraliza a imagem se max-width for atingido */
+  }
+
+  .cards {
+      /* Em telas menores, uma coluna só */
+      grid-template-columns: 1fr;
+      padding: 1rem;
+      padding-bottom: 2rem;
+  }
+
+  /* Em uma coluna, não precisamos mais que o terceiro card expanda */
+  .card:nth-child(3) {
+      grid-column: auto; /* Volta ao comportamento padrão */
+  }
+}
+
+@media (max-width: 480px) { /* Ajustes para telas bem pequenas */
+  .experience-text-content h2 {
+      font-size: 1.8rem;
+  }
+  .card h3 {
+      font-size: 1.3rem;
+  }
+  .card p {
+      font-size: 0.9rem;
+  }
 }

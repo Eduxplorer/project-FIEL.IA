@@ -1,7 +1,7 @@
 /* Estilos gerais da seção */
 .resources-section-content {
   text-align: center;
-  padding: 40px 20px;
+  padding: 12rem 20px;
   background-color: #1c1c1c; /* Fundo escuro */
   color: white;
 }
@@ -14,7 +14,7 @@
 /* Configuração do Grid para exibir os cards */
 .resources-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cria um grid responsivo */
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); /* Cria um grid responsivo */
   gap: 20px; /* Espaço entre os cards */
   justify-items: center;
   padding: 20px;

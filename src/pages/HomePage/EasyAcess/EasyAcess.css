@@ -1,0 +1,95 @@
+/* EasyAccess.css */
+
+.easy-access-section {
+    background-color: #121212; /* Fundo escuro, similar ao Spotify/imagem */
+    color: #ffffff; /* Cor principal do texto: branco */
+    padding: 80px 20px; /* Espaçamento interno (vertical, horizontal) */
+    min-height: 60vh; /* Altura mínima para ocupar mais espaço */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Centraliza o H2 por padrão */
+  }
+  
+  .easy-access-section .easy-container {
+      max-width: 1100px; /* Largura máxima do conteúdo */
+      width: 100%;
+  }
+  
+  .easy-access-section h2 {
+    font-size: 4em; /* Tamanho do título principal */
+    margin-bottom: 60px; /* Espaço abaixo do título */
+    font-weight: 700;
+  }
+  
+  .access-points-container {
+    display: flex; /* Usa Flexbox para as colunas */
+    justify-content: space-around; /* Distribui o espaço entre os cards */
+    align-items: center; /* Alinha os cards pelo topo */
+    gap: 30px; /* Espaço entre os cards */
+    text-align: left; /* Alinha o texto dos cards à esquerda */
+  }
+  
+  .access-point-card {
+    flex: 1; /* Faz cada card ocupar o mesmo espaço */
+    padding: 2rem; /* Espaçamento interno dos cards (opcional) */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha o conteúdo do card à esquerda */
+  }
+  
+  
+  
+  .access-point-card .icon {
+    font-size: 2.5em; /* Tamanho dos ícones */
+    color: #ffffff; /* Cor dos ícones */
+  }
+  
+  /* Estilo específico para o ícone do Google se precisar de ajuste */
+  .access-point-card .icon.fa-google {
+      font-weight: bold; /* Pode tentar deixar mais 'cheio' */
+  }
+  
+  .access-point-card h3 {
+    font-size: 2em; /* Tamanho do título do card */
+    margin-bottom: 15px; /* Espaço abaixo do título do card */
+    font-weight: 600;
+  }
+  
+  .access-point-card p {
+    font-size: 1.5em; /* Tamanho do texto */
+    color: #b3b3b3; /* Cor cinza claro para o texto, mais suave */
+    line-height: 1.6; /* Altura da linha para melhor leitura */
+  }
+  
+  /* --- Responsividade --- */
+  @media (max-width: 768px) {
+    .easy-access-section h2 {
+      font-size: 2.2em;
+      margin-bottom: 40px;
+    }
+  
+    .access-points-container {
+      flex-direction: column; /* Coloca os cards um abaixo do outro */
+      align-items: center; /* Centraliza os cards */
+      text-align: center; /* Centraliza o texto nos cards */
+      gap: 50px; /* Aumenta o espaço vertical */
+    }
+  
+    .access-point-card {
+       align-items: center; /* Centraliza o conteúdo dentro dos cards */
+       max-width: 350px; /* Limita a largura dos cards */
+    }
+  }
+  
+  @media (max-width: 480px) {
+      .easy-access-section h2 {
+          font-size: 1.8em;
+      }
+      .access-point-card h3 {
+          font-size: 1.4em;
+      }
+      .access-point-card p {
+          font-size: 0.95em;
+      }
+  }
