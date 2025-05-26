@@ -1,0 +1,65 @@
+.about-container {
+  display: grid;
+  position: relative;
+  height: auto;
+  grid-template-rows: auto;
+  gap: 10px;
+  padding: 2rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  justify-content: center;
+
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.background-image1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/torcida_organizada_corinthians_2025.jpg'); /* Substitua pela URL da sua imagem */
+    background-size: cover;
+    filter: blur(3px) brightness(0.2); /* Aplica o desfoque na imagem */
+    z-index: -1; /* Garante que a imagem fique atrás dos cards */
+}
+
+.about-container h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+}
+
+.about-text { /* Torna o fundo mais transparente */
+  border-radius: 10px; 
+  background: transparent;
+  padding: 2.5rem;
+  color: white;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra suave */
+  transition: transform 0.3s ease-in-out; /* Efeito de hover */
+}
+
+.about-text:hover {
+  transform: translateY(-10px); /* Sobe ligeiramente ao passar o mouse */
+}
+
+
+
+.about-text h3 {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr; /* Coloca os itens em uma coluna para dispositivos móveis */
+  }
+}
