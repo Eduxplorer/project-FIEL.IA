@@ -34,7 +34,7 @@ const ExperienceSection = () => {
             </div>
           </div>
         </div>
-        <div className="image-content">
+        <div className="image-experience-content">
           <img src="/fielIA-banner2.png" alt="Fiel IA Banner" />
         </div>
       </section>

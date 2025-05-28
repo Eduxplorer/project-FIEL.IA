@@ -1,0 +1,38 @@
+.premios-recompensas {
+    background-color: #1e1e1e;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .premios-recompensas h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .premios-recompensas p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  
+  .premios {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .premio {
+    text-align: center;
+  }
+  
+  .premio img {
+    max-width: 200px;
+    margin-bottom: 10px;
+  }
+  
+  .premio p {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  

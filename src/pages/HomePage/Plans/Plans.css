@@ -1,0 +1,81 @@
+
+
+.plans-container {
+    display: flex; /* Muda para flexbox */
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente na container principal */
+    min-height: 100vh; /* Garante que o container ocupe a altura total da viewport para centralização vertical */
+    padding: 20px; /* Adiciona um padding para não colar nas bordas */
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+}
+
+
+.plans-background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('/torcida-plans-background.jpg'); /* Substitua pela URL da sua imagem */
+    background-size: cover;
+    filter: blur(3px) brightness(0.2); /* Aplica o desfoque na imagem */
+    z-index: -1; /* Garante que a imagem fique atrás dos cards */
+}
+
+.plans-title {
+    font-size: 4rem;
+}
+
+.plans-text-content {
+    display: grid;
+    grid-template-areas: 
+    "basico fiel fanatico";
+    gap: 20px;
+
+}
+
+
+
+
+.plans-card {
+
+    border-radius: 10px; 
+    background: transparent;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    max-width: 500px; /* Ajuste este valor conforme a necessidade */
+    word-wrap: break-word; /* Garante que palavras longas quebrem se ultrapassarem a largura */
+    /* ou use overflow-wrap: break-word; para navegadores mais recentes */
+    box-sizing: border-box; /* Inclui padding e bordas na largura total */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Efeito de hover */
+}
+
+.plans-card:hover {
+    transform: translateY(-10px);
+}
+
+
+
+.plans-card h2 {
+    color: #879097;
+    font-size: 4.5rem;
+}
+
+.plans-card .pricing {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+
+.basico{
+    grid-area: "basico";
+}
+
+.fiel {
+    grid-area: "fiel";
+}
+
+.fanatico {
+    grid-area: "fanatico";
+}

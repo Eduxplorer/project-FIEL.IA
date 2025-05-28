@@ -6,6 +6,7 @@ import ExperienceSection from './pages/HomePage/ExperienceSection/ExperienceSect
 import Header from './pages/HomePage/Header/Header'
 import Plans from './pages/HomePage/Plans/Plans'
 import ResourcesSection from './pages/HomePage/ResourcesSection/ResourcesSection'
+import Rewards from './pages/HomePage/Rewards/Rewards'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
     <ExperienceSection  />
     <EasyAcess />
     <Plans />
+    <Rewards />
     </>
   )
 }
