@@ -10,7 +10,7 @@ const Rewards = () => {
           <div className="premio-content">
 
           <img
-            src="/fielIA-banner1.png"
+            src="/corinthians-camiseta.jpg"
             alt="Camisa Oficial"
             />
           <p>Camisa Oficial</p>
@@ -20,7 +20,7 @@ const Rewards = () => {
           <div className="premio-content">
 
           <img
-            src="/fielIA-banner1.png"
+            src="/corinthians-ingressos.jpg"
             alt="Ingressos"
             />
           <p>Ingressos para jogos</p>
@@ -30,7 +30,7 @@ const Rewards = () => {
           <div className="premio-content">
 
           <img
-            src="/fielIA-banner1.png"
+            src="/money.jpg"
             alt="Dinheiro"
             />
           <p>Até dinheiro!</p>
@@ -40,7 +40,7 @@ const Rewards = () => {
           <div className="premio-content">
 
           <img
-            src="/fielIA-banner1.png" // Substitua pelo caminho da sua imagem do quiz
+            src="/fielia-celular.jpg" // Substitua pelo caminho da sua imagem do quiz
             alt="Participe de Quizzes"
             />
           <p>Participe de Quizzes</p>

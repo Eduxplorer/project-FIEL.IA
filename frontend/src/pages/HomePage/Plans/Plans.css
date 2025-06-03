@@ -1,81 +1,151 @@
-
-
+/* Plans.css */
 .plans-container {
-    display: flex; /* Muda para flexbox */
-    flex-direction: column; /* Organiza os itens em coluna */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente na container principal */
-    min-height: 100vh; /* Garante que o container ocupe a altura total da viewport para centralização vertical */
-    padding: 20px; /* Adiciona um padding para não colar nas bordas */
-    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centraliza verticalmente se o conteúdo for menor que a viewport */
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative; /* Necessário para o z-index do background funcionar corretamente */
+    overflow-x: hidden; /* Previne scroll horizontal indesejado */
 }
 
-
-.plans-background{
+.plans-background {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-image: url('/torcida-plans-background.jpg'); /* Substitua pela URL da sua imagem */
     background-size: cover;
-    filter: blur(3px) brightness(0.2); /* Aplica o desfoque na imagem */
-    z-index: -1; /* Garante que a imagem fique atrás dos cards */
+    background-position: center; /* Centraliza a imagem de fundo */
+    filter: blur(3px) brightness(0.2);
+    z-index: -1;
 }
 
 .plans-title {
-    font-size: 4rem;
+    font-size: 2.5rem; /* Tamanho base para mobile */
+    color: white; /* Adicionado para garantir visibilidade contra o fundo escuro */
+    text-align: center; /* Centralizar o título */
+    margin-bottom: 30px; /* Espaço abaixo do título */
 }
 
 .plans-text-content {
     display: grid;
-    grid-template-areas: 
-    "basico fiel fanatico";
+    /* Mobile: Uma coluna por padrão */
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "basico"
+        "fiel"
+        "fanatico";
     gap: 20px;
-
+    width: 100%;
+    max-width: 400px; /* Limita a largura em telas pequenas para melhor leitura */
 }
 
-
-
-
 .plans-card {
-
-    border-radius: 10px; 
-    background: transparent;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.3); /* Fundo levemente transparente para melhor leitura */
     color: white;
     text-align: center;
-    padding: 2rem;
-    max-width: 500px; /* Ajuste este valor conforme a necessidade */
-    word-wrap: break-word; /* Garante que palavras longas quebrem se ultrapassarem a largura */
-    /* ou use overflow-wrap: break-word; para navegadores mais recentes */
-    box-sizing: border-box; /* Inclui padding e bordas na largura total */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra suave */
-    transition: transform 0.3s ease-in-out; /* Efeito de hover */
+    padding: 1.5rem; /* Padding um pouco menor para mobile */
+    word-wrap: break-word;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra um pouco mais pronunciada */
+    transition: transform 0.3s ease-in-out;
+    display: flex; /* Usar flex para alinhar conteúdo interno */
+    flex-direction: column; /* Empilhar conteúdo do card verticalmente */
+    justify-content: space-between; /* Distribui espaço, útil se os cards tiverem alturas diferentes */
 }
 
 .plans-card:hover {
     transform: translateY(-10px);
 }
 
-
-
 .plans-card h2 {
     color: #879097;
-    font-size: 4.5rem;
+    font-size: 3rem; /* Tamanho ajustado para mobile */
+    margin-bottom: 10px;
 }
 
 .plans-card .pricing {
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.8rem; /* Tamanho ajustado para mobile */
+    margin-bottom: 15px;
 }
 
+.plans-card p:not(.pricing) { /* Estilo para os parágrafos de descrição */
+    font-size: 0.9rem;
+    line-height: 1.4;
+    flex-grow: 1; /* Permite que este parágrafo ocupe espaço disponível, ajudando no alinhamento */
+    margin-bottom: 0; /* Remove margem inferior se for o último elemento */
+}
 
-.basico{
-    grid-area: "basico";
+.basico {
+    grid-area: basico;
 }
 
 .fiel {
-    grid-area: "fiel";
+    grid-area: fiel;
 }
 
 .fanatico {
-    grid-area: "fanatico";
+    grid-area: fanatico;
+}
+
+/* Tablet - A partir de 768px */
+@media (min-width: 768px) {
+    .plans-title {
+        font-size: 3.5rem;
+    }
+
+    .plans-text-content {
+        /* Ainda uma coluna, mas com mais largura */
+        max-width: 500px;
+    }
+
+    .plans-card {
+        padding: 2rem; /* Restaura padding original */
+    }
+
+    .plans-card h2 {
+        font-size: 4rem;
+    }
+
+    .plans-card .pricing {
+        font-size: 2rem;
+    }
+
+    .plans-card p:not(.pricing) {
+        font-size: 1rem;
+    }
+}
+
+/* Desktop - A partir de 1024px */
+@media (min-width: 1024px) {
+    .plans-title {
+        font-size: 4rem; /* Restaura tamanho original */
+    }
+
+    .plans-text-content {
+        /* Três colunas para desktop */
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "basico fiel fanatico";
+        max-width: 1200px; /* Largura máxima maior para acomodar 3 cards */
+        gap: 30px; /* Aumenta o espaço entre os cards */
+    }
+
+    .plans-card h2 {
+        font-size: 4.5rem; /* Restaura tamanho original */
+    }
+}
+
+/* Ajustes para telas muito largas (opcional) */
+@media (min-width: 1440px) {
+    .plans-text-content {
+        max-width: 1400px; /* Ainda mais largo se necessário */
+        gap: 40px;
+    }
 }
