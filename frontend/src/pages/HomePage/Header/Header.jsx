@@ -3,7 +3,7 @@
  const Header = () => {
   return (
     <div className="grid-container">
-      <div className="text-content">
+      <div className="text-content-header">
         <h1>Fiel.IA – A Inteligência Artificial da Fiel Torcida</h1>
         <p>
           A Primeira inteligência Alvinegra da Favela. Chegou o parceiro que
@@ -13,7 +13,7 @@
         <button>Quero falar com a Fiel.IA agora</button>
       </div>
       <div className="image-content">
-        <img src="..\..\public\fielIA-banner1.png" alt="FielIA Image" />
+        <img src="/fielIA-banner1.png" alt="FielIA Image" />
       </div>
     </div>
   );

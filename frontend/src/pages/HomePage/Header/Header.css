@@ -12,21 +12,19 @@
   background-color: #181818;
 }
 
-.text-content {
+.text-content-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-    
-  padding: 2rem;
 }
-.text-content h1 {
+.text-content-header h1 {
   margin-bottom: 20px;
   font-size: 3rem;
   font-weight: bold;
   color: white;
 }
 
-.text-content p {
+.text-content-header p {
   margin-bottom: 20px;
   font-size: 1.5rem;
   color: #736f6b;

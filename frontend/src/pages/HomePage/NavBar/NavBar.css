@@ -1,0 +1,81 @@
+/* From Uiverse.io by SelfMadeSystem */ 
+.outline {
+    position: absolute;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+  }
+  
+  .rect {
+    stroke-dashoffset: 5;
+    stroke-dasharray: 0 0 10 40 10 40;
+    transition: 0.5s;
+
+    stroke: #f54f4f;
+  }
+  
+  .nav {
+    position: fixed; /* MODIFICADO de relative para fixed */
+    top: 0;          /* ADICIONADO: Alinha o topo da navbar com o topo da viewport */
+    left: 0;         /* ADICIONADO: Alinha a esquerda da navbar com a esquerda da viewport */
+    width: 100%;     /* Mantido: Faz a navbar ocupar toda a largura */
+    height: 60px;    /* Mantido: Define a altura da navbar */
+    z-index: 1000;   /* OPCIONAL, MAS RECOMENDADO: Garante que a navbar fique sobre outros elementos */
+    /* Outros estilos que você possa ter para .nav podem permanecer */
+    /* Por exemplo, se você tiver um background-color aqui, ele será aplicado */
+  }
+  .nav-container:hover .outline .rect {
+    transition: 999999s;
+    /* Must specify these values here as something *different* just so that the transition works properly */
+    stroke-dashoffset: 1;
+    stroke-dasharray: 0;
+  }
+  
+  .nav-container {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5em;
+  }
+  
+  .btn {
+    padding: 0.5em 1.5em;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.1s;
+  }
+  
+  .btn:hover {
+    background: #fff3;
+  }
+  
+  .btn:nth-child(1):hover ~ svg .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 2 8 73.3 8 10.7;
+  }
+  
+  .btn:nth-child(2):hover ~ svg .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
+  }
+  
+  .btn:nth-child(3):hover ~ svg .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 24.5 8.5 27.5 8.5 55.5;
+  }
+  
+  .btn:nth-child(4):hover ~ svg .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 34.7 6.9 10.2 6.9 76;
+  }
+  
+  .btn:hover ~ .outline .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 0 10 40 10 40;
+    transition: 0.5s !important;
+  }
+  
