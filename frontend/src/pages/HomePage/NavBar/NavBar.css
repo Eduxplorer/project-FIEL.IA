@@ -1,81 +1,136 @@
-/* From Uiverse.io by SelfMadeSystem */ 
-.outline {
-    position: absolute;
-    inset: 0;
-    z-index: 2000;
-    pointer-events: none;
-  }
-  
-  .rect {
-    stroke-dashoffset: 5;
-    stroke-dasharray: 0 0 10 40 10 40;
-    transition: 0.5s;
+/* --- ESTILOS GERAIS --- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #000;
+  z-index: 1000;
+  transition: height 0.3s ease-in-out; /* Adicionado para uma transição suave da altura */
+}
 
-    stroke: #f54f4f;
+.nav-container {
+  position: relative; /* Mudado de 'absolute' para 'relative' para melhor controle */
+  height: 100%;
+  display: flex;
+  justify-content: space-between; /* Melhor que space-around para alinhar o logo/links de um lado e o resto do outro */
+  align-items: center;
+  padding: 0 2em; /* Padding horizontal para não colar nas bordas */
+  margin: 0 auto; /* Garante que o container fique centralizado */
+  max-width: 1200px; /* Boa prática para limitar a largura em telas muito grandes */
+}
+
+.nav-links {
+  display: flex; /* Os links ficam em flex */
+  gap: 1em; /* Espaço entre os links */
+}
+
+.btn {
+  padding: 0.5em 1em; /* Padding um pouco reduzido */
+  color: #fff;
+  cursor: pointer;
+  transition: 0.1s;
+  background: transparent;
+}
+
+.btn:hover {
+  background: #fff3;
+}
+
+/* --- ESTILOS DO SVG (EFEITO DE BORDA) - Sem grandes alterações --- */
+.outline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: none; /* Escondido por padrão, será mostrado só em telas grandes */
+}
+
+.rect {
+  stroke-dashoffset: 5;
+  stroke-dasharray: 0 0 10 40 10 40;
+  transition: 0.5s;
+  stroke: #f54f4f;
+}
+
+.nav-container:hover .outline .rect {
+  transition: 999999s;
+  stroke-dashoffset: 1;
+  stroke-dasharray: 0;
+}
+
+/* Os estilos :hover para cada botão podem ser mantidos se o SVG for visível no desktop */
+/* ... (seus estilos .btn:nth-child(n):hover ~ svg .rect) ... */
+
+/* --- MENU HAMBÚRGUER (SÓ APARECE NO MOBILE) --- */
+.hamburger {
+  display: none; /* Escondido por padrão */
+  cursor: pointer;
+  z-index: 1001; /* Garante que fique acima dos links no mobile */
+}
+
+.hamburger .line {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --- A MÁGICA DA RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+  .outline {
+    display: none; /* Oculta o efeito de borda no mobile */
   }
-  
-  .nav {
-    position: fixed; /* MODIFICADO de relative para fixed */
-    top: 0;          /* ADICIONADO: Alinha o topo da navbar com o topo da viewport */
-    left: 0;         /* ADICIONADO: Alinha a esquerda da navbar com a esquerda da viewport */
-    width: 100%;     /* Mantido: Faz a navbar ocupar toda a largura */
-    height: 60px;    /* Mantido: Define a altura da navbar */
-    z-index: 1000;   /* OPCIONAL, MAS RECOMENDADO: Garante que a navbar fique sobre outros elementos */
-    /* Outros estilos que você possa ter para .nav podem permanecer */
-    /* Por exemplo, se você tiver um background-color aqui, ele será aplicado */
-  }
-  .nav-container:hover .outline .rect {
-    transition: 999999s;
-    /* Must specify these values here as something *different* just so that the transition works properly */
-    stroke-dashoffset: 1;
-    stroke-dasharray: 0;
-  }
-  
+
   .nav-container {
+    justify-content: flex-end; /* No mobile, só precisamos alinhar o hambúrguer à direita */
+  }
+
+  .hamburger {
+    display: block; /* Mostra o botão hambúrguer */
+  }
+
+  .nav-links {
+    /* Transforma o container de links em um menu vertical que ocupa a tela */
     position: absolute;
-    inset: 0;
-    background: #000;
+    top: 60px; /* Começa logo abaixo da navbar */
+    left: 0;
+    background: #111; /* Um fundo um pouco diferente para o menu */
+    width: 100%;
+    flex-direction: column; /* Organiza os links verticalmente */
+    align-items: center; /* Centraliza os links */
+    padding: 20px 0;
+
+    /* Esconde o menu fora da tela por padrão */
+    transform: translateY(-120%);
+    transition: transform 0.4s ease-in-out;
+  }
+
+  /* QUANDO A NAVBAR ESTIVER ATIVA (COM A CLASSE 'active') */
+  .nav.active .nav-links {
+    transform: translateY(0); /* Traz o menu para a visão */
+  }
+
+  /* Animação do X no botão hambúrguer */
+  .nav.active .hamburger .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .nav.active .hamburger .line:nth-child(2) {
+    opacity: 0;
+  }
+  .nav.active .hamburger .line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+}
+
+/* Para telas de desktop, garantimos que o SVG e os links estejam visíveis */
+@media (min-width: 769px) {
+  .outline {
+    display: block;
+  }
+  .nav-links {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0.5em;
   }
-  
-  .btn {
-    padding: 0.5em 1.5em;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.1s;
-  }
-  
-  .btn:hover {
-    background: #fff3;
-  }
-  
-  .btn:nth-child(1):hover ~ svg .rect {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 0 2 8 73.3 8 10.7;
-  }
-  
-  .btn:nth-child(2):hover ~ svg .rect {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
-  }
-  
-  .btn:nth-child(3):hover ~ svg .rect {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 0 24.5 8.5 27.5 8.5 55.5;
-  }
-  
-  .btn:nth-child(4):hover ~ svg .rect {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 0 34.7 6.9 10.2 6.9 76;
-  }
-  
-  .btn:hover ~ .outline .rect {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 0 0 10 40 10 40;
-    transition: 0.5s !important;
-  }
-  
+}

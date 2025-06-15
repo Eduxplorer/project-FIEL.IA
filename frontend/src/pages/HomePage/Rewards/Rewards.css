@@ -1,147 +1,122 @@
+/* --- CONTAINER PRINCIPAL --- */
 .premios-recompensas {
-  display: flex;
-  background-color: #242424;
-  color: #f0f0f0;
+  display: flex; /* Mudado para flex para alinhar o conteúdo verticalmente */
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  }
-  
-  .premios-recompensas h2 {
-  margin-bottom: 3rem;
-  font-size: 4rem;
+  gap: 20px; /* Espaço entre o título, os cards e o parágrafo */
+  background-color: #242424;
+  color: #f0f0f0;
+  padding: 40px 20px; /* Um pouco mais de padding vertical */
+  text-align: center; /* Centraliza o h2 e o parágrafo final */
+}
+
+/* --- TÍTULO --- */
+.premios-recompensas h2 {
+  margin-bottom: 1rem; /* Margem reduzida para mobile */
+  /* CORREÇÃO CRÍTICA (FONTES):
+    Usando clamp() para a fonte ser responsiva.
+    Mínimo de 2.5rem, ideal de 5vw, máximo de 4rem.
+  */
+  font-size: clamp(2.5rem, 5vw, 4rem);
   color: #ffffff;
-  }
-  
-  .premios {
+}
+
+/* --- GRID DOS PRÊMIOS (A GRANDE MUDANÇA) --- */
+.premios {
   display: grid;
   gap: 2rem;
-  width: 80%;
-  margin-bottom: 15px;
-  justify-content: center;
-  }
-  
-  /* Estilos para telas maiores (desktop) */
-  @media (min-width: 993px) {
-  .premios {
-  grid-template-areas:
-  'premio1 premio2 premio3 premio4';
-  }
-  }
-  
-  /* Estilos para tablets */
-  @media (max-width: 992px) and (min-width: 601px) {
-  .premios {
-  grid-template-areas:
-  'premio1 premio2'
-  'premio3 premio4';
-  }
-  }
-  
-  /* Estilos para tablets menores */
-  @media (max-width: 600px) and (min-width: 481px) {
-  .premios {
-  grid-template-areas:
-  'premio1'
-  'premio2'
-  'premio3'
-  'premio4';
-  margin-bottom: 7rem;
-  }
-  }
-  
-  /* Estilos para mobile */
-  @media (max-width: 480px) {
-  .premios {
-  grid-template-areas:
-  'premio1'
-  'premio2'
-  'premio3'
-  'premio4';
-  }
-  }
-  
-  .premio {
-  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 1200px; /* Limita a largura em telas muito grandes */
+  /*
+    CORREÇÃO MÁGICA (LAYOUT):
+    Esta única linha substitui TODAS as suas media queries para o layout.
+    'repeat(auto-fit, minmax(250px, 1fr))' significa:
+    - Crie quantas colunas couberem na tela (auto-fit).
+    - Cada coluna deve ter no mínimo 250px (minmax).
+    - Se sobrar espaço, divida-o igualmente entre as colunas (1fr).
+    Isso cria um grid perfeitamente fluido e responsivo.
+  */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* --- CARD INDIVIDUAL DE PRÊMIO --- */
+.premio {
+  aspect-ratio: 1 / 1; /* Mantém o card quadrado */
+  /* CORREÇÃO CRÍTICA (TAMANHO):
+    Removido 'height: 300px;'. Agora a altura é definida pelo aspect-ratio 
+    e a largura é controlada pelo grid-template-columns. O card vai encolher
+    e crescer com a tela!
+  */
   display: flex;
-  height: 300px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2vw, 1.2rem); /* Fonte do card também responsiva */
   border-radius: 20px;
   padding: 3px;
+  transition: transform 0.3s ease-in-out;
+  
+  /* Seus estilos de gradiente e sombra estão ótimos, mantidos 100% */
   background-image: linear-gradient(120deg, #54789c, #4f6d8f, #496085, #007cf8);
   background-size: 200% 200%;
   animation: gradientAnimation 4s ease-in-out infinite alternate;
   box-shadow: rgba(0, 0, 0, 0.5) 0 10px 25px -5px;
-  flex-direction: column;
-  align-items: center;  
-  justify-content: center;
-  transition: transform 0.3s ease-in-out;
-  }
-  
-  .premio-content {
+}
+
+.premio:hover {
+  transform: scale(1.05);
+}
+
+.premio-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Para empurrar o texto para baixo */
   background: #1c1c1c;
   border-radius: 17px;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
   padding: 15px;
   box-sizing: border-box;
-  }
-  
-  .premio:hover {
-  transform: scale(1.05);
-  }
-  
-  .premio:nth-child(1) {
-  grid-area: premio1;
-  }
-  
-  .premio:nth-child(2) {
-  grid-area: premio2;
-  }
-  
-  .premio:nth-child(3) {
-  grid-area: premio3;
-  }
-  
-  .premio:nth-child(4) {
-  grid-area: premio4;
-  }
-  
-  .premio img {
-  width: 90%;
+}
+
+.premio img {
+  width: 85%; /* Um pouco menor para mais respiro */
   height: auto;
   border-radius: 8px;
   object-fit: cover;
   aspect-ratio: 1 / 1;
-  margin-bottom: 10px;
-  }
-  
-  .premio p {
+}
+
+.premio p {
   text-align: center;
-  margin-top: auto;
   color: #d0d0d0;
   padding-top: 5px;
-  }
-  
-  .premios-recompensas > p {
-  margin-top: 30px;
+  font-size: clamp(0.9rem, 2vw, 1.1rem); /* Fonte do parágrafo do card responsiva */
+}
+
+/* --- PARÁGRAFO FINAL --- */
+.premios-recompensas > p {
+  margin-top: 20px;
   text-align: center;
   color: #b0b0b0;
-  width: 80%;
+  width: 90%;
   max-width: 700px;
   line-height: 1.6;
-  }
-  
-  @keyframes gradientAnimation {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+}
+
+@keyframes gradientAnimation {
   0% {
-  background-position: 0% 50%;
+    background-position: 0% 50%;
   }
   100% {
-  background-position: 100% 50%;
+    background-position: 100% 50%;
   }
-  }
+}
+
+/* NOTA: As media queries antigas e as classes .premio:nth-child() com grid-area 
+  não são mais necessárias para o layout, pois o 'repeat(auto-fit...)' cuida de tudo!
+  Você pode removê-las para deixar seu código mais limpo.
+*/

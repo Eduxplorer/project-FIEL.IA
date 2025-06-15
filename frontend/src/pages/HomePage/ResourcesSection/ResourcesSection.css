@@ -1,67 +1,12 @@
-/* Estilos gerais da seção */
-.resources-section-content {
-  text-align: center;
-  padding: 12rem 20px;
-  background-color: #1c1c1c; /* Fundo escuro */
-  color: white;
-}
-
-.resources-section-content h2 {
-  font-size: 3.5rem;
-  margin-bottom: 80px;
-}
-
-/* Configuração do Grid para exibir os cards */
-.resources-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); /* Cria um grid responsivo */
-  gap: 20px; /* Espaço entre os cards */
-  justify-items: center;
-  padding: 20px;
-}
-
-/* Estilo dos cards de recursos */
-.resource-card {
-  background: rgba(255, 255, 255, 0.1); /* Fundo semitransparente */
-  border-radius: 10px;
-  padding: 20px;
-  max-width: 300px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.resource-card:hover {
-  transform: translateY(-10px); /* Efeito de hover para levantar o card */
-}
-
-/* Estilos para o ícone */
-.icon {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-/* Estilos para o título */
-.resource-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-/* Estilos para o texto */
-.resource-card p {
-  font-size: 1rem;
-  color: #ccc;
-}
-
-/* Efeito de blur no fundo da página */
+/* --- EFEITO DE BLUR NO FUNDO --- */
 .resources-section {
-  background: url('path/to/your/background-image.jpg') no-repeat center center fixed;
+  /* Lembre-se de substituir pelo caminho real da sua imagem de fundo! */
+  background: url('/path/to/your/background-image.jpg') no-repeat center center fixed;
   background-size: cover;
   position: relative;
   z-index: 0;
 }
 
-/* Adicionando o efeito de blur no fundo */
 .resources-section::before {
   content: '';
   position: absolute;
@@ -69,7 +14,84 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Escurece o fundo */
-  filter: blur(10px); /* Aplica o blur */
+  /* Uma sobreposição escura um pouco mais sutil */
+  background: rgba(0, 0, 0, 0.6); 
+  /* O backdrop-filter é mais performático para blur em alguns navegadores */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px); 
   z-index: -1;
+}
+
+/* --- ESTILOS GERAIS DA SEÇÃO --- */
+.resources-section-content {
+  text-align: center;
+  /* CORREÇÃO CRÍTICA (ESPAÇAMENTO): 
+    'padding: 12rem 20px' era muito grande para o mobile.
+    Usando clamp() o padding vertical será no mínimo 4rem, idealmente 8vw,
+    e no máximo 10rem, adaptando-se suavemente à tela.
+  */
+  padding: clamp(4rem, 8vw, 10rem) 20px;
+  color: white;
+}
+
+.resources-section-content h2 {
+  /* CORREÇÃO CRÍTICA (FONTES E MARGENS):
+    Tanto o tamanho da fonte quanto a margem agora são responsivos com clamp().
+  */
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  margin-bottom: clamp(40px, 6vw, 80px);
+}
+
+/* --- GRID DOS CARDS --- */
+.resources-grid {
+  display: grid;
+  /* MELHORIA: Trocado auto-fill por auto-fit. A diferença é sutil, mas o
+    auto-fit expande os itens para preencher o espaço se houver poucas colunas,
+    o que fica melhor em telas muito estreitas.
+    O minmax(280px, 1fr) garante que os cards nunca fiquem muito apertados.
+  */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px; /* Aumentei um pouco o gap para mais respiro */
+  justify-items: center;
+  /* Removido o padding daqui, pois o container principal já tem */
+}
+
+/* --- ESTILO DOS CARDS DE RECURSOS --- */
+.resource-card {
+  background: rgba(36, 36, 36, 0.5); /* Fundo um pouco mais escuro e opaco */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+  border-radius: 12px;
+  padding: 30px 25px;
+  /* CORREÇÃO CRÍTICA (LARGURA): 
+    Removido 'max-width: 300px'. Isso estava em conflito com o minmax() do grid.
+    Agora, o tamanho do card é 100% controlado pelo 'grid-template-columns',
+    garantindo que ele preencha a célula do grid corretamente.
+  */
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* --- ESTILOS DOS ELEMENTOS INTERNOS DO CARD --- */
+.icon {
+  display: inline-block; /* Garante que a margem funcione corretamente */
+  font-size: clamp(2.5rem, 4vw, 3rem); /* Ícone responsivo */
+  margin-bottom: 20px; /* Mais espaço abaixo do ícone */
+  color: #f54f4f; /* Cor temática que usamos antes */
+}
+
+.resource-card h3 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem); /* Título do card responsivo */
+  margin-bottom: 15px;
+}
+
+.resource-card p {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.6; /* Melhora a legibilidade */
 }

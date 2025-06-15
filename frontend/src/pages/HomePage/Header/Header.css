@@ -1,32 +1,46 @@
-
-
+/* Estilos Gerais */
 .grid-container {
   display: grid;
-  grid-template-columns: 10fr 10fr; /* Cria duas colunas iguais */
-  gap: 20px; /* Espaçamento entre as colunas */
-  align-items: center; /* Alinha os itens no centro verticalmente */
-  padding: 20px;
-    margin: 0;
-  padding: 0;
+  grid-template-columns: 1fr 1fr; /* Cria duas colunas iguais para telas grandes */
+  gap: 40px; /* Aumentei um pouco o espaço para melhor respiro */
+  align-items: center;
+  /* Corrigido: Removi o 'padding: 0;' que estava sobrescrevendo o 'padding: 30px;'
+    Adicionei um padding responsivo usando clamp() para que ele se ajuste ao tamanho da tela.
+    Ele terá no mínimo 20px, o ideal de 5vw (5% da largura da tela), e no máximo 50px.
+  */
+  padding: clamp(20px, 5vw, 50px);
+  margin: 0;
   box-sizing: border-box;
   background-color: #181818;
+  /* Adicionado para evitar que o conteúdo "vaze" */
+  overflow: hidden;
 }
 
 .text-content-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* O padding principal já está no container, não precisa de um padding grande aqui */
+  padding: 0;
 }
+
 .text-content-header h1 {
   margin-bottom: 20px;
-  font-size: 3rem;
+  /* Fonte agora é responsiva com clamp().
+    Tamanho mínimo de 2rem, ideal de 4vw, e máximo de 3rem.
+  */
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: bold;
   color: white;
+  line-height: 1.2; /* Melhora a leitura em títulos com mais de uma linha */
 }
 
 .text-content-header p {
   margin-bottom: 20px;
-  font-size: 1.5rem;
+  /* Fonte também responsiva.
+    Tamanho mínimo de 1rem, ideal de 2vw, e máximo de 1.5rem.
+  */
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: #736f6b;
   line-height: 1.5;
 }
@@ -39,21 +53,50 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1.5rem;
-  width: 25rem;
   justify-content: center;
   margin-top: 20px;
+  font-weight: bold; /* Adicionado para dar mais destaque */
+  /*
+    PONTO CRÍTICO DA CORREÇÃO:
+    Removido 'width: 25rem;' que era um valor fixo e causava o overflow.
+    'max-width: 100%;' garante que o botão nunca será maior que seu container (a coluna de texto).
+    'width: auto;' ou 'width: fit-content;' faz com que ele se ajuste ao conteúdo, mas como queremos um botão maior,
+    vamos definir uma largura máxima específica e deixar que ele ocupe 100% do espaço no mobile.
+    Para desktop, um 'max-width' funciona melhor que um 'width' fixo.
+  */
+  max-width: 400px; /* Equivalente a 25rem, mas como um limite máximo */
+  width: 100%; /* Faz o botão ocupar a largura disponível até o seu max-width */
+  font-size: clamp(1rem, 2vw, 1.2rem); /* Fonte do botão também responsiva */
 }
 
 .image-content img {
-  max-width: 100%; /* Faz a imagem se ajustar ao tamanho do container */
+  max-width: 100%;
   height: auto;
   border-radius: 10px;
 }
 
-/* Estilos responsivos */
+/* Estilos Responsivos */
 @media (max-width: 768px) {
   .grid-container {
-    grid-template-columns: 1fr; /* Para telas menores, exibe os elementos em uma coluna */
+    /* Em telas menores, o layout vira de uma coluna só */
+    grid-template-columns: 1fr;
+    text-align: center; /* Centraliza o texto para uma melhor aparência no mobile */
   }
+
+  .text-content-header {
+    /* Garante que o conteúdo de texto venha primeiro no mobile */
+    order: 1;
+    align-items: center; /* Centraliza o botão */
+  }
+
+  .image-content {
+    /* Garante que a imagem venha primeiro (opcional, mas comum em layouts mobile) */
+    order: 1;
+    margin-bottom: 20px; /* Adiciona um espaço entre a imagem e o texto */
+  }
+
+  /* O botão já está com width: 100% e max-width: 400px, 
+    então ele vai se ajustar perfeitamente na coluna única do mobile.
+    Não precisamos de regras adicionais para ele aqui.
+  */
 }
